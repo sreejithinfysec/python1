@@ -6,6 +6,7 @@ name: qwiet.ai
 on:
   pull_request:
   workflow_dispatch:
+  push:
 
 jobs:
   NextGen-Static-Analysis:
@@ -24,7 +25,7 @@ jobs:
         ${GITHUB_WORKSPACE}/sl analyze --strict --wait \
           --app python1 \
           --tag branch=${{ github.head_ref }} \
-          --pythonsrc $(pwd)
+          $(pwd)
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
         SHIFTLEFT_API_HOST: www.shiftleft.io
